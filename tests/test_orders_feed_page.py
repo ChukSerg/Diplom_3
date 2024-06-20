@@ -12,9 +12,8 @@ class TestOrdersFeedPage:
         assert orders_feed_page.is_orders_window_displayed() is True
 
     @allure.title('Тестирование отображения заказов пользователя на странице Ленты заказов')
-    def test_user_order_show_in_order_feed(self, driver):
-        orders_feed_page = OrdersFeedPage(driver)
-        orders_feed_page.authorization_enter()
+    def test_user_order_show_in_order_feed(self, authorized_driver):
+        orders_feed_page = OrdersFeedPage(authorized_driver)
         orders_feed_page.make_new_order()
         orders_feed_page.close_details_order_window()
         number = orders_feed_page.get_last_order_number()
@@ -23,9 +22,8 @@ class TestOrdersFeedPage:
         assert number_window == number
 
     @allure.title('Тестирование увеличения счетчика заказов Выполнено за все время')
-    def test_check_all_time_counter(self, driver):
-        orders_feed_page = OrdersFeedPage(driver)
-        orders_feed_page.authorization_enter()
+    def test_check_all_time_counter(self, authorized_driver):
+        orders_feed_page = OrdersFeedPage(authorized_driver)
         orders_feed_page.order_list_button_click()
         before_orders = orders_feed_page.get_all_time_counter()
         orders_feed_page.constructor_button_click()
@@ -36,9 +34,8 @@ class TestOrdersFeedPage:
         assert int(before_orders) < int(after_orders)
 
     @allure.title('Тестирование увеличения счетчика заказов За сегодня')
-    def test_check_today_counter(self, driver):
-        orders_feed_page = OrdersFeedPage(driver)
-        orders_feed_page.authorization_enter()
+    def test_check_today_counter(self, authorized_driver):
+        orders_feed_page = OrdersFeedPage(authorized_driver)
         orders_feed_page.order_list_button_click()
         before_orders = orders_feed_page.get_today_counter()
         orders_feed_page.constructor_button_click()
@@ -49,9 +46,8 @@ class TestOrdersFeedPage:
         assert int(before_orders) < int(after_orders)
 
     @allure.title('Тестирование появления нового заказа в разделе В работе')
-    def test_check_appearance_new_order_in_work_area(self, driver):
-        orders_feed_page = OrdersFeedPage(driver)
-        orders_feed_page.authorization_enter()
+    def test_check_appearance_new_order_in_work_area(self, authorized_driver):
+        orders_feed_page = OrdersFeedPage(authorized_driver)
         orders_feed_page.make_new_order()
         order_number = orders_feed_page.get_new_order_number_in_pop_up()
         orders_feed_page.close_details_order_window()

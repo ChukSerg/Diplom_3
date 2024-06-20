@@ -17,7 +17,7 @@ class TestHomePage:
     def test_order_list_page_open_success(self, driver):
         home_page = HomePage(driver)
         home_page.order_list_button_click()
-        current_url = driver.current_url
+        current_url = home_page.get_current_url()
         assert current_url == Urls.ORDER_LIST_URL
 
     @allure.title('Тестирование открытия окна с деталями ингредиента')
@@ -41,9 +41,8 @@ class TestHomePage:
         assert home_page.get_counter_value() == '2'
 
     @allure.title('Тестирование создания заказа авторизованным пользователем')
-    def test_making_order_by_authorized_user(self, driver):
-        home_page = HomePage(driver)
-        home_page.authorization_enter()
+    def test_making_order_by_authorized_user(self, authorized_driver):
+        home_page = HomePage(authorized_driver)
         home_page.drag_and_drop_ingredient_to_order()
         home_page.place_an_order_button_click()
         order_id_text = home_page.get_order_id_text()

@@ -31,15 +31,6 @@ class BasePage:
     def input_data(self, locator, data):
         self.driver.find_element(*locator).send_keys(data)
 
-    @allure.step('Авторизация на сайте')
-    @allure.description('Вход в личный кабинет, ввод данных email и password, регистрация. Открыта главная страница')
-    def authorization_enter(self):
-        self.button_click(PrivateAreaPageLocators.private_area_link)
-        self.input_data(PrivateAreaPageLocators.login_email_input, StellarBurgerAuth.EMAIL)
-        self.input_data(PrivateAreaPageLocators.login_password_input, StellarBurgerAuth.PASSWORD)
-        self.button_click(PrivateAreaPageLocators.login_button_submit)
-        self.wait_open_form(PrivateAreaPageLocators.login_expected_text)
-
     @allure.step('Переход в личный кабинет неавторизованного пользователя')
     def private_area_transfer(self):
         self.button_click(PrivateAreaPageLocators.private_area_link)
@@ -90,3 +81,7 @@ class BasePage:
     def constructor_button_click(self):
         self.button_click(HomePageLocators.button_construct)
         self.wait_open_form(HomePageLocators.constructor_header)
+
+    @allure.step('Получение url адреса')
+    def get_current_url(self):
+        return self.driver.current_url

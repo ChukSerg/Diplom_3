@@ -10,7 +10,7 @@ class TestPageRecoveryPass:
     def test_opening_page_recovery_pass(self, driver):
         recovery_pass_page = RecoveryPassPage(driver)
         recovery_pass_page.recovery_pass_button_click()
-        current_url = driver.current_url
+        current_url = recovery_pass_page.get_current_url()
         assert current_url == Urls.RECUVERY_PASS_PAGE_URL
 
     @allure.title('Тестирование ввода почты и клик по кнопке Восстановить')
@@ -18,7 +18,7 @@ class TestPageRecoveryPass:
         driver.get(Urls.RECUVERY_PASS_PAGE_URL)
         recovery_pass_page = RecoveryPassPage(driver)
         recovery_pass_page.input_email_restore_button_click()
-        current_url = driver.current_url
+        current_url = recovery_pass_page.get_current_url()
         assert current_url == Urls.RESET_PAGE_URL
 
     @allure.title('Тестирование отображения символов пароля')
@@ -27,4 +27,4 @@ class TestPageRecoveryPass:
         recovery_pass_page = RecoveryPassPage(driver)
         recovery_pass_page.input_email_restore_button_click()
         recovery_pass_page.open_pass_simbols()
-        assert driver.find_element(*RecoveryPassPageLocators.open_pass).is_displayed()
+        assert recovery_pass_page.is_simbols() is True

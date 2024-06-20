@@ -1,11 +1,11 @@
 class Urls:
     MAIN_PAGE_URL = 'https://stellarburgers.nomoreparties.site/'
-    RECUVERY_PASS_PAGE_URL = 'https://stellarburgers.nomoreparties.site/forgot-password'
-    RESET_PAGE_URL = 'https://stellarburgers.nomoreparties.site/reset-password'
-    PRIVATE_AREA_URL = 'https://stellarburgers.nomoreparties.site/account/profile'
-    ORDER_HISTORY_URL = 'https://stellarburgers.nomoreparties.site/account/order-history'
-    LOGIN_URL = 'https://stellarburgers.nomoreparties.site/login'
-    ORDER_LIST_URL = 'https://stellarburgers.nomoreparties.site/feed'
+    RECUVERY_PASS_PAGE_URL = MAIN_PAGE_URL + 'forgot-password'
+    RESET_PAGE_URL = MAIN_PAGE_URL + 'reset-password'
+    PRIVATE_AREA_URL = MAIN_PAGE_URL + 'account/profile'
+    ORDER_HISTORY_URL = MAIN_PAGE_URL + 'account/order-history'
+    LOGIN_URL = MAIN_PAGE_URL + 'login'
+    ORDER_LIST_URL = MAIN_PAGE_URL + 'feed'
 
 
 class StellarBurgerAuth:

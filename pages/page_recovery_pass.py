@@ -23,3 +23,9 @@ class RecoveryPassPage(BasePage):
         self.wait_open_form(RecoveryPassPageLocators.restore_code_placeholder)
         self.input_data(RecoveryPassPageLocators.password_reset_field, StellarBurgerAuth.PASSWORD)
         self.button_click(RecoveryPassPageLocators.view_pass_button)
+
+    @allure.step('Проверка отображения символов в пароле')
+    def is_simbols(self):
+        return self.driver.find_element(*RecoveryPassPageLocators.open_pass).is_displayed()
+
+
